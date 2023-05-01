@@ -1,0 +1,3 @@
+rootProject.name = 'book-event-driven'
+include 'api-book'
+
