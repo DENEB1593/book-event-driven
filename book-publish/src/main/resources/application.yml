@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+spring:
+   kafka:
+     bootstrap-servers: broker:9092
+
+deneb:
+  kafka:
+    topic: books.published

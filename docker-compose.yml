@@ -12,8 +12,6 @@ services:
     image: confluentinc/cp-kafka:7.3.0
     container_name: broker
     ports:
-    # To learn about configuring Kafka for access across networks see
-    # https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/
       - "9092:9092"
     depends_on:
       - zookeeper
@@ -26,9 +24,9 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
 
-  api-book:
-    build: ./api-book
-    container_name: api-book
+  book-api:
+    build: ./book-api
+    container_name: book-api
     depends_on:
       - broker
     ports:
@@ -38,26 +36,12 @@ services:
       DENEB_KAFKA_NOTIFICATION_TOPIC: 'notification.created'
       SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'
 
-#  authorpersistence:
-#    build: ./author-persistence
-#    container_name: authorpersistence
-#    depends_on:
-#      - broker
-#    ports:
-#      - "8282:8080"
-#    environment:
-#      SPRING_PROFILES_ACTIVE: 'production'
-#      DEVTIRO_KAFKA_NOTIFICATION_TOPIC: 'notification.created'
-#      SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'
-#
-#  notifications:
-#    build: ./notifications
-#    container_name: notifications
-#    depends_on:
-#      - broker
-#    ports:
-#      - "8383:8080"
-#    environment:
-#      SPRING_PROFILES_ACTIVE: 'production'
-#      DEVTIRO_KAFKA_TOPIC: 'notification.created'
-#      SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'
+  book-publish:
+    build: ./book-publish
+    container_name: book-publish
+    depends_on:
+      - broker
+    environment:
+      SPRING_PROFILES_ACTIVE: 'production'
+      DENEB_KAFKA_TOPIC: 'books.published'
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'

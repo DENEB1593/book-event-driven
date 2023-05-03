@@ -1,3 +1,4 @@
 rootProject.name = 'book-event-driven'
-include 'api-book'
+include 'book-api'
+include 'book-publish'
 
