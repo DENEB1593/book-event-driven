@@ -2,6 +2,9 @@
 
 ---
 
+### 실행
+  docker-compose up -d
+
 - book-api, book-publish, author-api, notification 으로 구성
 
 - 현재 구현 중

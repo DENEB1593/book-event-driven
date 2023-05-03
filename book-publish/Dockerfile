@@ -2,7 +2,7 @@ FROM gradle:7.4.0-jdk17 as builder
 
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN gradle build --no-daemon
+RUN gradle build --daemon
 
 FROM openjdk:17-ea-11-jdk-slim
 
