@@ -1,10 +1,8 @@
-server:
-  port: 8080
-
 spring:
   kafka:
     consumer:
-      group-id: book-api
+      group-id: notification
 
 kafka:
-  notification: books.published
+  notification:
+    topic: notification.created

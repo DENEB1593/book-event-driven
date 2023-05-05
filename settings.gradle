@@ -1,4 +1,4 @@
 rootProject.name = 'book-event-driven'
 include 'book-api'
 include 'book-publish'
-
+include 'notification'

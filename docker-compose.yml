@@ -41,7 +41,22 @@ services:
     container_name: book-publish
     depends_on:
       - broker
+    ports:
+      - "8282:8080"
     environment:
       SPRING_PROFILES_ACTIVE: 'production'
       DENEB_KAFKA_TOPIC: 'books.published'
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'
+
+
+  notification:
+    build: ./notification
+    container_name: notification
+    depends_on:
+      - broker
+    ports:
+      - "8083:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: 'production'
+      DENEB_KAFKA_TOPIC: 'notification.created'
       SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'

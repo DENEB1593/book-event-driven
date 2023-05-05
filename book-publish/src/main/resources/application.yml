@@ -1,9 +1,8 @@
-server:
-  port: 8081
-
 spring:
-   kafka:
-     bootstrap-servers: broker:9092
+  kafka:
+    bootstrap-servers: broker:9092
+    consumer:
+      group-id: notification
 
 deneb:
   kafka:

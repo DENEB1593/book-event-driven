@@ -1,0 +1,8 @@
+spring:
+  kafka:
+    bootstrap-servers: broker:9092
+
+
+deneb:
+  kafka:
+    topic: notification.created
